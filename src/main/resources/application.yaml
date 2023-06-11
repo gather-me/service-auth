@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: service-auth
+  datasource:
+    username: ${database.user}
+    password: ${database.password}
+    url: jdbc:postgresql://${database.endpoint}/${database.name}
+    driver-class-name: org.postgresql.Driver
+    generate-unique-name: false
+  flyway:
+    user: ${database.user}
+    password: ${database.password}
+    url: jdbc:postgresql://${database.endpoint}/${database.name}
+    baselineOnMigrate: true
+    table: flyway_${spring.application.name}_schema_history
+
+client:
+  secret: $2a$10$eh1SBZJ3Pf4usNcOSTsviO4zUhQ0pmrZBp/inKDgvQ51iUhpztP6S
+
+server:
+  port: 9000
+
+# Database
+database:
+  endpoint: ${DATABASE_ENDPOINT}
+  name: ${DATABASE_NAME}
+  password: ${DATABASE_PASSWORD}
+  user: ${DATABASE_USER}
+
+springdoc:
+  swagger-ui:
+    path: /
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
